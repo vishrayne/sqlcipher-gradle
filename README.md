@@ -13,5 +13,20 @@ and is subject to that project's license terms.
 The `build.gradle` file uses an
 [unofficial `android-maven` plugin](https://github.com/dcendents/android-maven-plugin)
 that is AAR-aware. Running **`gradle install`** will install this to
-your local Maven repository for consumption in another project.
+your local Maven repository for consumption in another project. That
+project would need stuff like this in its `build.gradle`:
+
+To use that, add the following
+blocks to your `build.gradle` file:
+
+```groovy
+repositories {
+    mavenLocal()
+    // note: use url "${System.env.HOME}/.m2/repository" if mavenLocal() does not work for you due to bug in Gradle 1.9
+}
+
+dependencies {
+    compile 'net.sqlcipher:sqlcipher-gradle:3.0.1'
+}
+```
 
